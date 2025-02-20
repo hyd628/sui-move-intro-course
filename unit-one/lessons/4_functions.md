@@ -55,5 +55,5 @@ We can define our minting function in the Hello World example as the following:
     }
 ```
 
-This function simply creates a new instance of the `HelloWorldObject` custom type, then uses the Sui system [`public_transfer`](https://github.com/MystenLabs/sui/blob/main/crates/sui-framework/docs/sui-framework/transfer.md#function-public_transfer) function to send it to the transaction caller. 
+This function simply creates a new instance of the `HelloWorldObject` custom type, then uses the Sui system [`public_transfer`](https://github.com/MystenLabs/sui/blob/main/crates/sui-framework/docs/sui/transfer.md#function-public_transfer) function to send it to the transaction caller. 
 

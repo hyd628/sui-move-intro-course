@@ -160,7 +160,7 @@ Now, let's write the function to deserialize an object in a Sui contract.
 
 ```
 
-The varies `peel_*` methods in Sui Frame [`bcs` module](https://github.com/MystenLabs/sui/blob/main/crates/sui-framework/docs/sui-framework/bcs.md) are used to "peel" each individual field from the BCS serialized bytes. Note that the order we peel the fields must be exactly the same as the order of the fields in the struct definition. 
+The varies `peel_*` methods in Sui Frame [`bcs` module](https://github.com/MystenLabs/sui/blob/main/crates/sui-framework/docs/sui/bcs.md) are used to "peel" each individual field from the BCS serialized bytes. Note that the order we peel the fields must be exactly the same as the order of the fields in the struct definition. 
 
 _Quiz: Why are the results not the same from the first two `peel_address` calls on the same `bcs` object?_
 
