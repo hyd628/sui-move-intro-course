@@ -53,6 +53,20 @@ Welcome to the Sui Move introduction course. In this first unit, we will walk yo
 
     `cargo install --git https://github.com/move-language/move move-analyzer --features "address20"`
 
+## (Optional) Configure VS Code with Sui Extension Plug-in
+
+This tool allows you to easily build, test, and deploy smart contracts in VS Code with just a button click, without needing to use the Sui CLI directly. It's perfect for those who are not familiar with the Sui CLI or who want a more convenient way to deploy their contracts.
+
+![Sui Extension Capture](../images/vscode_sui_extension.png)
+
+1. Install the [Sui Extension Plugin](https://marketplace.visualstudio.com/items?itemName=zktxio.sui-extension) from the VS Marketplace.
+
+Make sure to use the Sui Extension developed by `zktx.io`.
+
+2. Once installed, you'll see a Sui Extension tab in the sidebar, where you can easily perform tasks like building and deploying contracts, or checking Objects.
+
+![Sui Extension Sidebar Capture](../images/vscode_sui_extension_sidebar.png)
+
 ## Sui CLI Basic Usage
 
 [Reference Page](https://docs.sui.io/build/cli-client)
