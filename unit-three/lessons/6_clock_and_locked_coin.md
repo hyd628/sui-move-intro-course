@@ -24,7 +24,7 @@ Now that we know how to access time on-chain through `clock`, implementing a ves
 
 `locked_coin` builds on top of the `managed_coin` implementation with the addition of one more custom type, `Locker`:
 
-```rust
+```move
     /// Transferrable object for storing the vesting coins
     ///
     public struct Locker has key, store {
@@ -47,7 +47,7 @@ Locker is a transferrable [asset](https://github.com/sui-foundation/sui-move-int
 
 In the `locked_mint` method, we create and transfer a `Locker` with the specified amount of tokens and vesting scheduled encoded:
 
-```rust
+```move
     /// Mints and transfers a locker object with the input amount of coins and specified vesting schedule
     /// 
     public fun locked_mint(treasury_cap: &mut TreasuryCap<LOCKED_COIN>, recipient: address, amount: u64, lock_up_duration: u64, clock: &Clock, ctx: &mut TxContext){
@@ -72,7 +72,7 @@ Note how `clock` is used here to get the current timestamp.
 
 The `withdraw_vested` method contains the majority of the logic to compute the vested amounts:
 
-```rust
+```move
     /// Withdraw the available vested amount assuming linear vesting
     ///
     public fun withdraw_vested(locker: &mut Locker, clock: &Clock, ctx: &mut TxContext){

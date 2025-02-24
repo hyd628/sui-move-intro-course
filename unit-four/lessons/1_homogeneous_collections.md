@@ -8,7 +8,7 @@ Before we delve into the main topic of building a marketplace on Sui, let's lear
 
 See the included example code for defining a `vector` and its basic operations. 
 
-```rust
+```move
 module collection::vector {
 
     use std::vector;
@@ -65,7 +65,7 @@ The `key` type of a `Table` must have the ability constraint of `copy + drop + s
 
 See the below example for working with `Table` collections:
 
-```rust
+```move
 module collection::table {
 
     use sui::table::{Table, Self};

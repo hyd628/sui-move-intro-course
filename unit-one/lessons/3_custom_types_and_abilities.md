@@ -14,8 +14,8 @@ Use an editor of your choice to create a Move smart contract source file called 
 
 And create the empty module as follows:
 
-```rust
-module hello_world::hello_world ;
+```move
+module hello_world::hello_world;
     // module contents
 ```
 
@@ -23,13 +23,13 @@ module hello_world::hello_world ;
 
 You can directly import modules in Move by their address, but to make code easier to read, we can organize imports with the keyword `use`. 
 
-```rust
+```move
 use <Address/Alias>::<ModuleName>;
 ```
 
 In our example, we need to import the following modules:
 
-```rust
+```move
 use std::string;
 use sui::object::{Self, UID};
 use sui::transfer;
@@ -61,7 +61,7 @@ Custom types that have the abilities `key` and `store` are considered to be **as
 
 We define the object in our Hello World example as the following:
 
-```rust
+```move
 /// An object that contains an arbitrary string
 public struct HelloWorldObject has key, store {
   	id: UID,

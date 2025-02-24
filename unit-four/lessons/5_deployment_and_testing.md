@@ -4,7 +4,7 @@ Next we can deploy and test our marketplace contract through the SUI CLI.
 
 We create a simple `marketplace::widget` module so we can mint some items for us to list to help with testing.
 
-```rust
+```move
 module marketplace::widget {
 
     use sui::object::{Self, UID};

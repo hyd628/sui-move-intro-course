@@ -12,7 +12,7 @@ Let's look at a basic example of how to use generics to create a container `Box`
 
 First, without generics, we can define a `Box` that holds a `u64` type as the following:
 
-```rust
+```move
 module  generics::storage {
     public struct Box {
         value: u64
@@ -22,7 +22,7 @@ module  generics::storage {
 
 However, this type will only be able to hold a value of type `u64`. To make our `Box` able to hold any generic type, we will need to use generics. The code would be modified as follows:
 
-```rust
+```move
 module  generics::storage {
     public struct Box<T> {
         value: T
@@ -34,7 +34,7 @@ module  generics::storage {
 
 We can add conditions to enforce that the type passed into the generic must have certain abilities. The syntax looks like the following:
 
-```rust
+```move
 module  generics::storage {
     // T must be copyable and droppable 
     public struct Box<T: store + drop> has key, store {
@@ -55,7 +55,7 @@ We will see in the next section that there is a way to get around this rule in c
 
 To write a function that returns an instance of `Box` that can accept a parameter of any type for the `value` field, we also have to use generics in the function definition. The function can be defined as the following:
 
-```rust
+```move
 public fun create_box<T>(value: T): Box<T> {
         Box<T> { value }
     }
@@ -63,7 +63,7 @@ public fun create_box<T>(value: T): Box<T> {
 
 If we want to restrict the function to only accept a specific type for `value`, we simply specify that type in the function signature as follows:
 
-```rust
+```move
 public fun create_box(value: u64): Box<u64> {
         Box<u64>{ value }
     }
@@ -75,7 +75,7 @@ This will only accept inputs of the type `u64` for the `create_box` method, whil
 
 To call a function with a signature that contains generics, we must specify the type in angle brackets, as in the following syntax:
 
-```rust
+```move
 // value will be of type storage::Box<bool>
     let bool_box = storage::create_box<bool>(true);
 // value will be of the type storage::Box<u64>

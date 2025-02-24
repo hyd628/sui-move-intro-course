@@ -10,7 +10,7 @@ First, we need to make some adjustments to our two custom types `WrappableTransc
 
 Remember that custom types with the abilities `key` and `store` are considered to be assets in Sui Move. 
 
-```rust
+```move
 public struct WrappableTranscript has key, store {
         id: UID,
         history: u8,
@@ -21,7 +21,7 @@ public struct WrappableTranscript has key, store {
 
 2. We need to add an additional field `intended_address` to the `Folder` struct that indicates the address of the intended viewer of the wrapped transcript. 
 
-``` rust
+```move
 public struct Folder has key {
     id: UID,
     transcript: WrappableTranscript,
@@ -31,7 +31,7 @@ public struct Folder has key {
 
 ## Request Transcript Method
 
-```rust
+```move
 public fun request_transcript(transcript: WrappableTranscript, intended_address: address, ctx: &mut TxContext){
     let folderObject = Folder {
         id: object::new(ctx),
@@ -47,7 +47,7 @@ This method simply takes in a `WrappableTranscript` object and wraps it in a `Fo
 
 ## Unwrap Transcript Method
 
-```rust
+```move
 public fun unpack_wrapped_transcript(folder: Folder, ctx: &mut TxContext){
     // Check that the person unpacking the transcript is the intended viewer
     assert!(folder.intended_address == tx_context::sender(ctx), 0);
@@ -82,7 +82,7 @@ where the boolean expression must evaluate to true, otherwise it will abort with
 
 We are using a default 0 for our error code above, but we can also define a custom error constant in the following way:
 
-```rust
+```move
     const ENotIntendedAddress: u64 = 1;
 ```
 

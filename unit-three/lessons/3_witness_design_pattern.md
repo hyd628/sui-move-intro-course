@@ -10,7 +10,7 @@ In the below example, the `witness` resource is `PEACE`, while the type `A` that
 
 The `witness` resource type must have the `drop` keyword so that this resource can be dropped after being passed into a function. We see that the instance of `PEACE` resource is passed into the `create_guardian` method and dropped (note the underscore before `witness`), ensuring that only one instance of `Guardian` can be created.
 
-```rust
+```move
     /// Module that defines a generic type `Guardian<T>` which can only be
     /// instantiated with a witness.
     module witness::peace {

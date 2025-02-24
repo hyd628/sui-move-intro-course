@@ -10,7 +10,7 @@ Now that we have a solid understanding of how various types of collections and d
 
 First, we define the overall `Marketplace` struct:
 
-```rust
+```move
     /// A shared `Marketplace`. Can be created by anyone using the
     /// `create` function. One instance of `Marketplace` accepts
     /// only one type of Coin - `COIN` for all its listings.
@@ -31,7 +31,7 @@ _Quiz: How would you modify this struct to accept multiple fungible token types?
 
 Next, we define a `Listing` type:
 
-```rust
+```move
     /// A single listing that contains the listed item and its
     /// price in [`Coin<COIN>`].
     public struct Listing has key, store {
@@ -48,7 +48,7 @@ Note that `Listing` has the `key` ability, so we are now able to use its object 
 
 Next, we write the logic for listing and delisting items. First, listing an item:
 
-```rust
+```move
    /// List an item at the Marketplace.
     public fun list<T: key + store, COIN>(
         marketplace: &mut Marketplace<COIN>,
@@ -71,7 +71,7 @@ As mentioned earlier, we will simply use the dynamic object field interface to a
 
 For delisting, we define the following methods:
 
-```rust
+```move
    /// Internal function to remove listing and get an item back. Only owner can do that.
     fun delist<T: key + store, COIN>(
         marketplace: &mut Marketplace<COIN>,
@@ -108,7 +108,7 @@ Note how the delisted `Listing` object is unpacked and deleted, and the listed i
 
 Buying an item is similar to delisting but with additional logic for handling payments. 
 
-```rust
+```move
     /// Internal function to purchase an item using a known Listing. Payment is done in Coin<C>.
     /// Amount paid must match the requested amount. If conditions are met,
     /// owner of the item gets the payment and buyer receives their item.
@@ -164,7 +164,7 @@ The entry function `buy_and_take` simply calls `buy` and transfers the purchased
 
 Lastly, we define methods for sellers to retrieve their balance from the marketplace. 
 
-```rust
+```move
    /// Internal function to take profits from selling items on the `Marketplace`.
     fun take_profits<COIN>(
         marketplace: &mut Marketplace<COIN>,

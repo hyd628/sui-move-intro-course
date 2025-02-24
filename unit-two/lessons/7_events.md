@@ -12,7 +12,7 @@ The event details of a transaction can be viewed on the [Sui Explorer](https://s
 
 Developers can also define custom events on Sui. We can define a custom event marking when a transcript has been requested in the following way.
 
-```rust
+```move
     /// Event marking when a transcript has been requested
     public struct TranscriptRequestEvent has copy, drop {
         // The Object ID of the transcript wrapper
@@ -30,7 +30,7 @@ To emit an event in Sui, you just need to use the [`sui::event::emit` method](ht
 
 Let's modify our `request_transcript` method to emit this event:
 
-```rust
+```move
     public fun request_transcript(transcript: WrappableTranscript, intended_address: address, ctx: &mut TxContext){
         let folderObject = Folder {
             id: object::new(ctx),

@@ -17,7 +17,7 @@ The first two types of ownership fall under the `Owned Objects` category. Owned 
 
 Let's continue using our `transcript` example here. This type of ownership is pretty straightforward as the object is owned by an address to which the object is transferred upon object creation, such as in the above example at this line:
 
-```rust
+```move
     transfer::transfer(transcriptObject, tx_context::sender(ctx)) // where tx_context::sender(ctx) is the recipient
 ```
 
@@ -35,7 +35,7 @@ Certain objects in Sui cannot be mutated by anyone, and because of this, these o
 
 To make an object immutable manually, one can call the following special function:
 
-```rust
+```move
     transfer::freeze_object(obj);
 ```
 
@@ -45,7 +45,7 @@ Shared objects in Sui can be read or mutated by anyone. Shared object transactio
 
 To create a shared object, one can call this method:
 
-```rust
+```move
     transfer::share_object(obj);
 ```
 

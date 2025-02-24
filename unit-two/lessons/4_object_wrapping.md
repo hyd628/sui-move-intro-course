@@ -4,7 +4,7 @@ There are multiple ways of nesting an object inside of another object in Sui Mov
 
 Let's continue our transcript example. We define a new `WrappableTranscript` type, and the associated wrapper type `Folder`.  
 
-```rust
+```move
 public struct WrappableTranscript has store {
     history: u8,
     math: u8,

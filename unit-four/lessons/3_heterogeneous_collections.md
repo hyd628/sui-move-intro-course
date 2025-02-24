@@ -12,7 +12,7 @@ A `Bag` is a heterogeneous map-like collection. The collection is similar to `Ta
 
 Sample code of common `Bag` operations is included below: 
 
-```rust
+```move
 module collection::bag {
 
     use sui::bag::{Bag, Self};

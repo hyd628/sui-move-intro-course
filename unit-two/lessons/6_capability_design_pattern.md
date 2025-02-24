@@ -4,7 +4,7 @@ Now we have the basics of a transcript publishing system, we want to add some ac
 
 Capability is a commonly used pattern in Move that allows fine-tuned access control using an object-centric model. Let's take a look at how we can define this capability object:
 
-```rust
+```move
   // Type that marks the capability to create, update, and delete transcripts
 public struct TeacherCap has key {
     id: UID
@@ -21,7 +21,7 @@ Next, we need to modify the methods which should be callable by someone with the
 
 For example, for the `create_wrappable_transcript_object` method, we can modify it as the follows:
 
-```rust
+```move
     public fun create_wrappable_transcript_object(_: &TeacherCap, history: u8, math: u8, literature: u8, ctx: &mut TxContext) {
         let wrappableTranscript = WrappableTranscript {
             id: object::new(ctx),
@@ -47,7 +47,7 @@ A module's initializer function is called once upon publishing the module. This 
 
 In our example, we can define the `init` method as the following:
 
-```rust
+```move
     /// Module initializer is called only once on module publish.
     fun init(ctx: &mut TxContext) {
         transfer::transfer(TeacherCap {
@@ -72,7 +72,7 @@ The second object created from the above transaction is an instance of the `Teac
 
 In order to give additional addresses admin access, we can simply define a method to create and send additional `TeacherCap` objects as the following:
 
-```rust
+```move
     public fun add_additional_teacher(_: &TeacherCap, new_teacher_address: address, ctx: &mut TxContext){
         transfer::transfer(
             TeacherCap {

@@ -4,7 +4,7 @@
 
 If you are familiar with rustlang, then you are probably familiar with the Rust ownership system. One advantage of movelang compared to Solidity is that you can get a sense of what a function call might do to the asset that you used for the function interaction. Here are some examples:
 
-```rust
+```move
 use sui::object::{Self};
 
 // You are allowed to retrieve the score but cannot modify it

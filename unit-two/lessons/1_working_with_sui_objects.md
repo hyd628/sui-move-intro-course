@@ -6,7 +6,7 @@ Sui Move is a fully object-centric language. Transactions on Sui are expressed a
 
 Let's first start with an example that represents a transcript recording a student's grades:
 
-```rust
+```move
 public struct Transcript {
     history: u8,
     math: u8,
@@ -16,7 +16,7 @@ public struct Transcript {
 
 The above definition is a regular Move struct, but it is not a Sui object. In order to make a custom Move type instantiate a Sui object in global storage, we need to add the `key` ability, and a globally unique `id: UID` field inside the struct definition. 
 
-```rust
+```move
 use sui::object::{UID};
 
 public struct TranscriptObject has key {
@@ -35,7 +35,7 @@ In Sui, every object must have an owner, which can be either an address, another
 
 We will discuss object ownership more in-depth in the next section. 
 
-```rust
+```move
 public fun create_transcript_object(history: u8, math: u8, literature: u8, ctx: &mut TxContext) {
   let transcriptObject = TranscriptObject {
     id: object::new(ctx),

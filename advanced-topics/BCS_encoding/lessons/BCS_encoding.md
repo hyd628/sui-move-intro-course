@@ -12,7 +12,7 @@ There are some high-level properties of BCS encoding that are good to keep in mi
 - There are no structs in BCS (since there are no types); the struct simply defines the order in which fields are serialized
 - Wrapper types are ignored, so `OuterType` and `UnnestedType` will have the same BCS representation:
 
-    ```rust
+    ```move
     struct OuterType {
         owner: InnerType
     }
@@ -24,7 +24,7 @@ There are some high-level properties of BCS encoding that are good to keep in mi
     }
     ```
 - Types containing the generic type fields can be parsed up to the first generic type field. So it's a good practice to put the generic type field(s) last if it's a custom type that will be ser/de'd.
-    ```rust
+    ```move
     struct BCSObject<T> has drop, copy {
         id: ID,
         owner: address,
@@ -124,7 +124,7 @@ Let's continue our example from above with the structs.
 
 We start with the corresponding struct definitions in the Sui Move contract.
 
-```rust
+```move
 {
     //..
     struct Metadata has drop, copy {
@@ -144,7 +144,7 @@ We start with the corresponding struct definitions in the Sui Move contract.
 
 Now, let's write the function to deserialize an object in a Sui contract. 
 
-```rust
+```move
     public fun object_from_bytes(bcs_bytes: vector<u8>): BCSObject {
 
         // Initializes the bcs bytes instance

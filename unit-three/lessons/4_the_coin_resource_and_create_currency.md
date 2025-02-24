@@ -6,7 +6,7 @@ Now we know how generics and witness patterns work, let's revisit the `Coin` res
 
 Now we understand how generics work. We can revisit the `Coin` resource from `sui::coin`.  It's [defined](https://github.com/MystenLabs/sui/blob/main/crates/sui-framework/packages/sui-framework/sources/coin.move#L28) as the following:
 
-```rust
+```move
 public struct Coin<phantom T> has key, store {
         id: UID,
         balance: Balance<T>
@@ -17,7 +17,7 @@ The `Coin` resource type is a struct that has a generic type `T` and two fields,
 
 `balance` is of the type [`sui::balance::Balance`](https://github.com/MystenLabs/sui/blob/main/crates/sui-framework/docs/sui/balance.md#0x2_balance_Balance), and is [defined](https://github.com/MystenLabs/sui/blob/main/crates/sui-framework/packages/sui-framework/sources/balance.move#L29) as:
 
-```rust 
+```move 
 public struct Balance<phantom T> has store {
     value: u64
 }
@@ -31,7 +31,7 @@ Recall our discussion on [`phantom`](./3_witness_design_pattern.md#the-phantom-k
 
 Let's look at what `coin::create_currency` actually does in its [source code](https://github.com/MystenLabs/sui/blob/main/crates/sui-framework/packages/sui-framework/sources/coin.move#L201):
 
-```rust
+```move
     public fun create_currency<T: drop>(
         witness: T,
         decimals: u8,
@@ -74,7 +74,7 @@ The method creates and returns two objects, one is the `TreasuryCap` resource an
 
 The `TreasuryCap` is an asset and is guaranteed to be a singleton object by the One Time Witness pattern:
 
-```rust
+```move
     /// Capability allowing the bearer to mint and burn
     /// coins of type `T`. Transferable
     public struct TreasuryCap<phantom T> has key, store {
@@ -85,7 +85,7 @@ The `TreasuryCap` is an asset and is guaranteed to be a singleton object by the 
 
 It wraps a singleton field `total_supply` of type `Balance::Supply`:
 
-```rust
+```move
 /// A Supply of T. Used for minting and burning.
     /// Wrapped into a `TreasuryCap` in the `Coin` module.
     public struct Supply<phantom T> has store {

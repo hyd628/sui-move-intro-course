@@ -25,7 +25,7 @@
 
 Protected actions generate an `ActionRequest` which need to be confirmed. 
 
-```rust
+```move
     public struct ActionRequest<phantom T> {
         /// Name of the Action to look up in the Policy. Name can be one of the
         /// default actions: `transfer`, `spend`, `to_coin`, `from_coin` or a

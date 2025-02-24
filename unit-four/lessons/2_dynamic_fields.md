@@ -13,7 +13,7 @@ There are two sub-types of dynamic fields:
 
 To illustrate how to work with dynamic fields, we define the following structs:
 
-```rust
+```move
    // Parent struct
     public struct Parent has key {
         id: UID,
@@ -33,7 +33,7 @@ To illustrate how to work with dynamic fields, we define the following structs:
 
 Here's the API to use for adding **dynamic fields** or **dynamic object fields** to an object:
 
-```rust
+```move
   module collection::dynamic_fields {
 
       use sui::dynamic_object_field as ofield;
@@ -55,7 +55,7 @@ Here's the API to use for adding **dynamic fields** or **dynamic object fields**
 
 Dynamic fields and dynamic object fields can be read or accessed as the following:
 
-```rust
+```move
     // Borrows a reference to a DOFChild
     public fun borrow_dofchild(child: &DOFChild): &DOFChild {
         child
@@ -74,7 +74,7 @@ Dynamic fields and dynamic object fields can be read or accessed as the followin
 
 Dynamic fields and dynamic object fields can also be mutated as the following:
 
-```rust
+```move
     // Mutate a DOFChild directly
     public fun mutate_dofchild(child: &mut DOFChild) {
         child.count = child.count + 1;
@@ -105,7 +105,7 @@ Dynamic fields and dynamic object fields can also be mutated as the following:
 
 We can remove a dynamic field from its parent object as follows:
 
-```rust
+```move
     // Removes a DFChild given its name and parent object's mutable reference, and returns it by value
     public fun remove_dfchild(parent: &mut Parent, child_name: vector<u8>): DFChild {
         field::remove<vector<u8>, DFChild>(&mut parent.id, child_name)

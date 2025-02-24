@@ -18,7 +18,7 @@ A function's last line (of execution) without a semicolon is the return value.
 
 Example:
 
-```rust
+```move
     public fun addition (a: u8, b: u8): u8 {
         a + b    
     }
@@ -45,7 +45,7 @@ The `TxContext` object contains [essential information](https://github.com/Myste
 
 We can define our minting function in the Hello World example as the following:
 
-```rust
+```move
     public fun mint(ctx: &mut TxContext) {
         let object = HelloWorldObject {
             id: object::new(ctx),

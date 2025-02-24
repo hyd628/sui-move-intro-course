@@ -7,7 +7,7 @@ Sui supports the [Move Testing Framework](https://github.com/move-language/move/
 Sui Move test code is just like any other Sui Move code, but it has special annotations and functions to distinguish it from the actual production code.
 Test functions or modules start with the `#[test]` or `#[test_only]` annotation. 
 
-```rust
+```move
 #[test_only]
 module fungible_tokens::managed_tests {
   #[test]
@@ -24,7 +24,7 @@ Each function inside this module can be seen as one unit test consisting of one 
 
 Inside the testing environment, we will be mainly leveraging the [`test_scenario` package](https://github.com/MystenLabs/sui/blob/main/crates/sui-framework/packages/sui-framework/sources/test/test_scenario.move) to simulate a runtime environment. The main object we need to understand and interact with here is the `Scenario` object. A `Scenario` simulates a multi-transaction sequence, and it can be initialized with the sender address as follows:
 
-```rust
+```move
   // Initialize a mock sender address
   let addr1 = @0xA;
   // Begins a multi-transaction scenario with addr1 as the sender
@@ -40,7 +40,7 @@ Inside the testing environment, we will be mainly leveraging the [`test_scenario
 
 To test our `Managed Coin` module, we need first to initialize the module state. Given that our module has an `init` function, we need to first create a `test_only` init function inside the `managed` module:
 
-```rust
+```move
 #[test_only]
     /// Wrapper of module initializer for testing
     public fun test_init(ctx: &mut TxContext) {
@@ -50,7 +50,7 @@ To test our `Managed Coin` module, we need first to initialize the module state.
 
 This is essentially a mock `init` function that can only be used for testing. Then we can initialize the runtime state in our scenario by simply calling this function:
 
-```rust
+```move
     // Run the managed coin module init function
     {
         managed::test_init(ctx(&mut scenario))
@@ -67,7 +67,7 @@ Then we simply call the `managed::mint` using all the necessary parameters.
 
 At the end of this transaction, we must return the `TreasuryCap<MANAGED>` object to the sender address using `test_scenario::return_to_address`.
 
-```rust
+```move
 next_tx(&mut scenario, addr1);
         {
             let treasurycap = test_scenario::take_from_sender<TreasuryCap<MANAGED>>(&scenario);
